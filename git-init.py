@@ -1,4 +1,5 @@
 import xmlrpclib
+import socket
 import sys
 from pprint import pprint
 
@@ -11,7 +12,8 @@ from pprint import pprint
 def printProgressBar(progress):
     #This function is used to print a progress bar. 
     #This bar is static. 
-    l = 40
+    l = 37
+    #Total length changed to 37 due to font changed to Menlo-Regular 11. 
     for i in range(0, int(round(l*progress))):
         sys.stdout.write('#')
     for i in range(int(round(l*progress)) + 1, l + 1):
@@ -47,9 +49,19 @@ def printItems(type, source):
             print('ERROR!')
         print(' ')
 
-s = xmlrpclib.ServerProxy('http://localhost:port/rpc')
-token = 'token:$$token$$'
 
+s = xmlrpclib.ServerProxy('http://localhost:port/rpc')
+token = 'token:$$token$$’
+socket.setdefaulttimeout(0.5)
+
+try:
+    tmp=s.aria2.getGlobalStat(token)
+except socket.error: 
+    print('Connection FAILED')
+    socket.setdefaulttimeout(None)
+    sys.exit()
+
+socket.setdefaulttimeout(None)
 active = s.aria2.tellActive(token, ['gid'])
 waiting = s.aria2.tellWaiting(token, -1, 2, ['gid'])
 stopped = s.aria2.tellStopped(token, -1, 2, ['gid'])
