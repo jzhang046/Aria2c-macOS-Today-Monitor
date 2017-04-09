@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "<stdin>", line 123, in <module>
+  File "<stdin>", line 70, in printItems
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/xmlrpclib.py", line 1240, in __call__
+    return self.__send(self.__name, args)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/xmlrpclib.py", line 1599, in __request
+    verbose=self.__verbose
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/xmlrpclib.py", line 1280, in request
+    return self.single_request(host, handler, request_body, verbose)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/xmlrpclib.py", line 1310, in single_request
+    response = h.getresponse(buffering=True)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1132, in getresponse
+    response.begin()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 453, in begin
+    version, status, reason = self._read_status()
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 409, in _read_status
+    line = self.fp.readline(_MAXLINE + 1)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py", line 480, in readline
+    data = self._sock.recv(self._rbufsize)
+socket.timeout: timed out

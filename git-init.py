@@ -94,12 +94,15 @@ def resetAndExit():
     sys.exit()
 
 s = xmlrpclib.ServerProxy('http://localhost:port/rpc')
-token = 'token:$$token$$’
+token = 'token:$$token$$'
 socket.setdefaulttimeout(2)
 #timeout too short will result in frequent timeout error. 
 
 try:
     tmp=s.aria2.getGlobalStat(token)
+except socket.timeout:
+    print('Socket timeout')
+    resetAndExit()
 except socket.error: 
     print('Connection FAILED')
     resetAndExit()
