@@ -48,9 +48,10 @@ def convSign(length):
     return rtn
 
 
-def printItems(type, source, token):
+def printItems(ttype, source, token):
     #This function is to print a certain type of missions. 
-    for item in type:
+    for item in ttype:
+        #avoid using Python keywords. 
         gid = item['gid']
     
         speed = source.aria2.tellStatus(token, gid, ['downloadSpeed'])
@@ -86,7 +87,10 @@ def printItems(type, source, token):
         else:
             print('ERROR!')
 
-        print(' ')#Print a new line. 
+        for num in range(0, int(math.ceil(len(ttype) / 2))):
+            print(' ')
+            #Print several new line to match in space.
+            #Otherwise have to manually scroll down when there are many jobs running. 
 
 
 def resetAndExit():
